@@ -43,10 +43,16 @@ class App extends Component {
         }.bind(this))
     }
 
+    receiveCallBack(movie){
+        this.setState({currentMovie: movie}, function () {
+            this.applyVideoToCurrentMovie();
+        });
+    }
+
     render() {
         const renderVideoList = () => {
             if (this.state.movieList.length >= 5) {
-                return <div><VideoList movieList={this.state.movieList}/></div>
+                return <div><VideoList movieList={this.state.movieList} callback={this.receiveCallBack.bind(this)}/></div>
             }
         };
 
